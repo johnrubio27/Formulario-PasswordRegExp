@@ -33,6 +33,9 @@ export class RegisterComponent implements OnInit {
   }
 
   save(): void {
+    if (this.myform.invalid) {
+      return;
+    }
     this.messageService.add({
       key: 'br',
       severity: 'success',
