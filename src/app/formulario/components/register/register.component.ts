@@ -46,4 +46,25 @@ export class RegisterComponent implements OnInit {
       this.router.navigate(['/home']);
     }, 3000);
   }
+
+  getErrorMessage(field: string): string {
+    let message: string;
+    if (this.myform.get(field)?.errors!.required) {
+      message = `El campo ${field} es requerido.`;
+    } else if (this.myform.get(field)?.hasError('pattern')) {
+      message = `El patron del campo ${field} es incorrecto.Ejemplo: A111abc!*?`;
+    } else if (this.myform.get(field).errors.email) {
+      message = `EL campo ${field} esta mal formado.`;
+    } else {
+      message = '';
+    }
+    return message;
+  }
+
+  isValidField(field: string): boolean {
+    return (
+      (this.myform.get(field)?.touched! || this.myform.get(field)?.dirty!) &&
+      !this.myform.get(field)?.valid
+    );
+  }
 }

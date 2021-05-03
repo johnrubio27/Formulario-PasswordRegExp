@@ -1,6 +1,6 @@
 <p-card
   header="Registro de Usuario"
-  [style]="{ width: '360px' }"
+  [style]="{ width: '500px' }"
   styleClass="p-card-shadow"
 >
   <ng-template pTemplate="header">
@@ -8,40 +8,56 @@
   </ng-template>
   <div class="p-d-flex p-jc-center">
     <form [formGroup]="myform" (ngSubmit)="(save)">
-      <span class="p-float-label p-m-2">
+      <span class="p-float-label p-m-4">
         <input
           id="float-input"
           type="text"
           pInputText
           formControlName="nombre"
         />
+        <div class="ng-invalid ng-dirty" *ngIf="isValidField('nombre')">
+          {{ getErrorMessage("nombre") }}
+        </div>
         <label for="float-input">Nombre</label>
       </span>
-      <span class="p-float-label p-m-2">
+      <span class="p-float-label p-m-4">
         <input
           id="float-input"
           type="text"
           pInputText
           formControlName="apellido"
         />
+        <div class="ng-invalid ng-dirty" *ngIf="isValidField('apellido')">
+          {{ getErrorMessage("apellido") }}
+        </div>
         <label for="float-input">Apellido</label>
       </span>
-      <span class="p-float-label p-m-2">
+      <span class="p-float-label p-m-4">
         <input
           id="float-input"
           type="email"
           pInputText
           formControlName="email"
         />
+        <div class="ng-invalid ng-dirty" *ngIf="isValidField('email')">
+          {{ getErrorMessage("email") }}
+        </div>
         <label for="float-input">Email</label>
       </span>
-      <span class="p-float-label p-m-2">
+      <span class="p-float-label p-m-4">
         <input
           id="float-input"
           type="password"
           pInputText
           formControlName="contrasena"
         />
+        <div
+          class="ng-invalid ng-dirty p-text-wrap"
+          style="width: 17rem"
+          *ngIf="isValidField('contrasena')"
+        >
+          <p class="text-dan">{{ getErrorMessage("contrasena") }}</p>
+        </div>
         <label for="float-input">Contraseña</label>
       </span>
       <div class="p-m-2">
